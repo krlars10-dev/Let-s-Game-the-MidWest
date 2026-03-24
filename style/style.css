@@ -242,7 +242,7 @@ a {
 }
 
 .moon-card img {
-  width: min(100%, 500px);
+  width: min(58.5%, 500px);
   margin: 0 auto;
   border-radius: var(--radius-sm);
 }
