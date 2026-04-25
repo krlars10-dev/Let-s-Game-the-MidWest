@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debt Freedom Tools</title>
+    <title>Couples Bill Splitter</title>
     <link rel="icon" href="images/moneyBag.png" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -55,8 +55,6 @@
   </div>
 </nav>
 
-
-
     <!-- Login Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -91,51 +89,79 @@
         </div>
     </div>
 
+  <!-- Hero Section -->
+  <section class="py-5 text-center" style="background: linear-gradient(135deg, #d9f0e1, #f7f9fc);">
+    <div class="container">
+      <h1 class="fw-bold" style="color:#2d6a4f;">Couples Bill Splitter</h1>
+      <p class="lead text-muted mt-3">Enter both incomes and a bill total to calculate a fair split.</p>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1>Take Control of Your Debt</h1>
-        <p>Simple, professional tools to pay off debt faster and manage bills fairly.</p>
-    </section>
+  <!-- Main Content -->
+  <div class="container my-5">
+    <div class="card p-4 shadow-sm">
+      <div class="mb-3">
+        <label for="incomeA" class="form-label">Person A Income ($)</label>
+        <input type="number" id="incomeA" class="form-control" min="0" placeholder="e.g. 3000">
+      </div>
 
-    <!-- Features -->
-    <div class="container my-5">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card feature-card p-4 h-100 text-center">
-                    <h2>💳 Debt Payoff Calculator</h2>
-                    <p>Use Snowball, Avalanche, or Income-Focused strategies to see how fast you can become debt-free.
-                    </p>
-                    <a href="debt-payoff.html" class="btn btn-primary-custom mt-3">Start Calculating</a>
-                </div>
-            </div>
+      <div class="mb-3">
+        <label for="incomeB" class="form-label">Person B Income ($)</label>
+        <input type="number" id="incomeB" class="form-control" min="0" placeholder="e.g. 2000">
+      </div>
 
-            <div class="col-md-4">
-                <div class="card feature-card p-4 h-100 text-center">
-                    <h2>👫 Couples Bill Splitter</h2>
-                    <p>Enter both incomes and a bill total, and we’ll calculate each person’s fair share.</p>
-                    <a href="joint-debt.html" class="btn btn-primary-custom mt-3">Try Couples Calculator</a>
-                </div>
-            </div>
+      <div class="mb-3">
+        <label for="billTotal" class="form-label">Bill Total ($)</label>
+        <input type="number" id="billTotal" class="form-control" min="0" placeholder="e.g. 1200">
+      </div>
 
-            <div class="col-md-4">
-                <div class="card feature-card p-4 h-100 text-center">
-                    <h2>📈 Track Your Progress</h2>
-                    <p>Save your data and watch your debt-free journey unfold over time.</p>
-                </div>
-            </div>
-        </div>
+      <button id="calculateSplit" class="btn btn-primary-custom w-100">Calculate Split</button>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Debt Freedom Tools</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
-    </footer>
+    <!-- Results -->
+    <div id="results" class="card p-4 mt-4 shadow-sm d-none">
+      <h2 class="fw-bold">Results</h2>
+      <p><strong>Person A Owes:</strong> $<span id="amountA"></span> (<span id="percentA"></span>%)</p>
+      <p><strong>Person B Owes:</strong> $<span id="amountB"></span> (<span id="percentB"></span>%)</p>
+    </div>
+  </div>
 
-    <!-- Scripts -->
-    <script src="login.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Footer -->
+  <footer class="mt-auto py-4 text-center" style="background-color:#2d6a4f; color:#fff;">
+    <p>© 2025 Debt Freedom Tools</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById("calculateSplit").addEventListener("click", () => {
+      const incomeA = parseFloat(document.getElementById("incomeA").value) || 0;
+      const incomeB = parseFloat(document.getElementById("incomeB").value) || 0;
+      const billTotal = parseFloat(document.getElementById("billTotal").value) || 0;
+
+      const totalIncome = incomeA + incomeB;
+      if (totalIncome === 0 || billTotal === 0) {
+        alert("Please enter valid incomes and bill total.");
+        return;
+      }
+
+      const percentA = (incomeA / totalIncome) * 100;
+      const percentB = (incomeB / totalIncome) * 100;
+      const amountA = (percentA / 100) * billTotal;
+      const amountB = (percentB / 100) * billTotal;
+
+      document.getElementById("amountA").textContent = amountA.toFixed(2);
+      document.getElementById("percentA").textContent = percentA.toFixed(1);
+      document.getElementById("amountB").textContent = amountB.toFixed(2);
+      document.getElementById("percentB").textContent = percentB.toFixed(1);
+
+      document.getElementById("results").classList.remove("d-none");
+    });
+  </script>
+
+  <!--Login Script-->
+  <script src="login.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
