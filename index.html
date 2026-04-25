@@ -1,141 +1,337 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debt Freedom Tools</title>
-    <link rel="icon" href="images/moneyBag.png" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Let's Game the MidWest helps anglers and hunters plan smarter trips with weather tools, forecasts, lake conditions, and seasonal inspiration.">
+  <title>Let's Game the MidWest | Fishing & Hunting Conditions</title>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">Debt Freedom</a>
-
-    <!-- Hamburger / toggler button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Nav links + auth buttons (inside collapse) -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="debt-payoff.html">Debt Payoff</a></li>
-        <li class="nav-item"><a class="nav-link" href="joint-debt.html">Couples Split</a></li>
-
-        <!-- Auth buttons inside collapse -->
-        <li class="nav-item ms-lg-2">
-          <button class="btn btn-outline-light w-100" data-bs-toggle="modal" data-bs-target="#loginModal" id="login-btn">Login</button>
-        </li>
-        <li class="nav-item ms-lg-2">
-          <button class="btn btn-outline-light w-100" data-bs-toggle="modal" data-bs-target="#signupModal" id="signup-btn">Sign Up</button>
-        </li>
-        <li class="nav-item ms-lg-2">
-          <button class="btn btn-outline-light w-100 d-none" id="logout-btn">Logout</button>
-        </li>
-        <li class="nav-item ms-lg-2">
-          <span id="user-email" class="text-white d-none"></span>
-        </li>
-      </ul>
+<body>
+  <nav class="navbar navbar-expand-lg site-nav sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#top">Let's Game the MidWest</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#conditions">Conditions</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-
-
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-3">
-                <div class="modal-header">
-                    <h5 class="modal-title">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="email" id="login-email" class="form-control mb-2" placeholder="Email">
-                    <input type="password" id="login-password" class="form-control mb-2" placeholder="Password">
-                    <button class="btn btn-success w-100" id="login-submit">Login</button>
-                </div>
+  <header class="hero-section" id="top">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+      <div class="row min-vh-100 align-items-center">
+        <div class="col-lg-8 col-xl-7">
+          <span class="eyebrow">Midwest Outdoors &bull; Fishing &bull; Hunting &bull; Ice Conditions</span>
+          <h1>Plan your next trip with the conditions that actually matter.</h1>
+          <p class="hero-copy">
+            Let's Game the MidWest gives outdoorsmen and families a cleaner way to check forecast data,
+            watch lake conditions, and get inspired for the next day out on the ice or in the field.
+          </p>
+          <div class="hero-actions d-flex flex-wrap gap-3">
+            <a href="#conditions" class="btn btn-primary btn-lg">View Conditions</a>
+            <a href="#gallery" class="btn btn-outline-light btn-lg">See the Gallery</a>
+          </div>
+          <div class="hero-stats row g-3 mt-4">
+            <div class="col-sm-4">
+              <div class="stat-card">
+                <strong>Wind</strong>
+                <span>Track changing direction and speed before you head out.</span>
+              </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-3">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sign Up</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="email" id="signup-email" class="form-control mb-2" placeholder="Email">
-                    <input type="password" id="signup-password" class="form-control mb-2" placeholder="Password">
-                    <button class="btn btn-primary w-100" id="signup-submit">Sign Up</button>
-                </div>
+            <div class="col-sm-4">
+              <div class="stat-card">
+                <strong>Moon Phase</strong>
+                <span>Keep an eye on cycles that can influence activity.</span>
+              </div>
             </div>
+            <div class="col-sm-4">
+              <div class="stat-card">
+                <strong>Forecast Tools</strong>
+                <span>Quick weather snapshots plus an interactive map.</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </header>
 
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1>Take Control of Your Debt</h1>
-        <p>Simple, professional tools to pay off debt faster and manage bills fairly.</p>
+  <main>
+    <section class="section-pad" id="about">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <span class="section-kicker">About the site</span>
+            <h2 class="section-title">Built for people who would rather be outside than guessing at the weather.</h2>
+            <p class="section-copy">
+              Here at Let's Game the MidWest, we know what matters before a trip: wind, weather movement,
+              lake conditions, cloud cover, pressure trends, and timing. This site brings those tools together
+              in a simple format so you can plan safer, smarter, and more productive outings.
+            </p>
+            <p class="section-copy mb-0">
+              Whether you're checking ice-fishing conditions, scouting a weekend hunt, or just deciding if it is worth
+              loading up the truck,
+              this page is meant to help you make the call faster.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <div class="info-grid">
+              <article class="info-card">
+                <h3>Trip Planning</h3>
+                <p>See the most useful data first instead of bouncing between five different apps.</p>
+              </article>
+              <article class="info-card">
+                <h3>Safer Decisions</h3>
+                <p>Check forecast shifts before bringing your friends or family onto the ice.</p>
+              </article>
+              <article class="info-card">
+                <h3>Seasonal Inspiration</h3>
+                <p>Photos and highlights help give the site a more personal outdoor feel.</p>
+              </article>
+              <article class="info-card accent-card">
+                <h3>Simple Experience</h3>
+                <p>Cleaner layout, better spacing, and stronger mobile responsiveness throughout.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Features -->
-    <div class="container my-5">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card feature-card p-4 h-100 text-center">
-                    <h2>💳 Debt Payoff Calculator</h2>
-                    <p>Use Snowball, Avalanche, or Income-Focused strategies to see how fast you can become debt-free.
-                    </p>
-                    <a href="debt-payoff.html" class="btn btn-primary-custom mt-3">Start Calculating</a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card feature-card p-4 h-100 text-center">
-                    <h2>👫 Couples Bill Splitter</h2>
-                    <p>Enter both incomes and a bill total, and we’ll calculate each person’s fair share.</p>
-                    <a href="joint-debt.html" class="btn btn-primary-custom mt-3">Try Couples Calculator</a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card feature-card p-4 h-100 text-center">
-                    <h2>📈 Track Your Progress</h2>
-                    <p>Save your data and watch your debt-free journey unfold over time.</p>
-                </div>
-            </div>
+    <section class="section-pad section-dark" id="conditions">
+      <div class="container">
+        <div class="section-head text-center mx-auto">
+          <span class="section-kicker">Conditions center</span>
+          <h2 class="section-title">Weather and planning tools in one place</h2>
+          <p class="section-copy">
+            Below are the core tools fishermen and hunters usually want first: local weather, a broader wind map,
+            and moon phase tracking.
+          </p>
         </div>
+
+        <div class="row g-4 mt-1">
+
+
+          <div class="col-12 col-md-8">
+            <div class="embed-card p-3 p-md-4">
+              <div class="card-header-copy">
+                <h3>Interactive Wind Map</h3>
+                <p>Use the live map to get a bigger-picture look at movement across the region.</p>
+              </div>
+              <div class="ratio ratio-16x9 rounded-4 overflow-hidden">
+                <iframe
+                  src="https://embed.windy.com/embed2.html?lat=45.737&lon=-93.691&detailLat=44.917&detailLon=-92.948&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
+                  title="Windy forecast map" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="embed-card p-3 p-md-4 moon-card text-center">
+              <div class="card-header-copy text-start">
+                <h3>Moon Phase Tracker</h3>
+                <p>Keep tabs on moon cycles before your next fishing or hunting trip.</p>
+              </div>
+              <a target="_blank" rel="noopener noreferrer" class="moon-link" href="https://moonphase.guide/">
+                <img
+                  src="https://moonphase.guide/module/MK2h3SWxYN0RzLzlvV3ZKN25ldTdSOUFyamtBeTE5eGtIdm41WFZHNmFuSmVHeGN6WU1zN1hMelhBTVArV0RTR3pDdUZ6Z2dLRGZaRW1yZ2FZemVBclE9PQ.png"
+                  alt="Moon phase guide widget">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="embed-card p-3 p-md-4">
+              <div class="card-header-copy">
+                <h3>St. Paul Weather</h3>
+                <p>Quick forecast snapshot for a fast check before you go.</p>
+              </div>
+
+              <div id="weather-output" class="weather-display">
+                <p>Loading weather...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="gallery">
+      <div class="container">
+        <div class="section-head text-center mx-auto">
+          <span class="section-kicker">Outdoor gallery</span>
+          <h2 class="section-title">Give the site more personality with real outdoor moments</h2>
+          <p class="section-copy">
+            I used your uploaded images to turn the page into something that feels more modern and more connected to the
+            outdoors.
+          </p>
+        </div>
+
+        <div class="row g-4 gallery-grid">
+          <div class="col-lg-8">
+            <article class="gallery-card gallery-hero-card">
+              <img src="photos/image000001_2.jpg"
+                alt="Angler holding a large fish indoors after a successful day on the ice">
+              <div class="gallery-copy">
+                <span>Catch of the week</span>
+                <h3>Feature the kind of moment people want to share.</h3>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-4">
+            <article class="gallery-card small-card h-100">
+              <img src="photos/glenna-haug-PQIkmq2wTNQ-unsplash.jpg"
+                alt="Ice fisherman sitting in the snow with an orange jacket">
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="gallery-card small-card">
+              <img src="photos/clay-banks-Ihful4zTe0Q-unsplash.jpg"
+                alt="Close-up of an ice fishing rod and reel in gloved hands">
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="gallery-card small-card">
+              <img src="photos/asdf.jpg" alt="Minimal outdoor themed image with a pen on a light background">
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad section-dark" id="resources">
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-5">
+            <span class="section-kicker">Resources</span>
+            <h2 class="section-title">Helpful state links for planning your trip</h2>
+            <p class="section-copy">
+              Keep quick-access links to outdoor agencies nearby so licensing, regulations, and local updates are easy
+              to find.
+            </p>
+          </div>
+          <div class="col-lg-7">
+            <div class="resource-grid">
+              <a class="resource-card" href="https://www.dnr.state.mn.us/" target="_blank" rel="noopener noreferrer">
+                <strong>Minnesota DNR</strong>
+                <span>Regulations, seasons, licensing, and local outdoor information.</span>
+              </a>
+              <a class="resource-card" href="https://dnr.wisconsin.gov/" target="_blank" rel="noopener noreferrer">
+                <strong>Wisconsin DNR</strong>
+                <span>State outdoor resources, permits, and recreation updates.</span>
+              </a>
+              <a class="resource-card" href="https://gfp.sd.gov/" target="_blank" rel="noopener noreferrer">
+                <strong>South Dakota GFP</strong>
+                <span>Hunting, fishing, parks, and field condition resources.</span>
+              </a>
+              <a class="resource-card" href="https://www.michigan.gov/dnr" target="_blank" rel="noopener noreferrer">
+                <strong>Michigan DNR</strong>
+                <span>Fishing reports, rules, and outdoor recreation guidance.</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-8">
+          <h2>Let's Game the MidWest</h2>
+          <p>
+            A cleaner, more modern landing page for outdoor enthusiasts who want weather tools,
+            planning resources, and a more polished brand feel.
+          </p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a class="footer-link" href="#top">Back to top</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Let's Game the MidWest</span>
+        <span>Site owned by <a style="color: orange;" href="https://www.TrueBitForgeNorth.com">TrueBit Forge North<img style="height: 50px; border-radius: 25%;" src="photos/TBFN1.png" alt=""></a></span>
+        
+      </div>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Debt Freedom Tools</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
-    </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Scripts -->
-    <script src="login.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    async function loadWeather1() { }
+    async function loadWeather() {
+      try {
+        const pointRes = await fetch("https://api.weather.gov/points/44.9537,-93.0900");
+        const pointData = await pointRes.json();
+
+        const forecastRes = await fetch(pointData.properties.forecast);
+        const forecastData = await forecastRes.json();
+
+        const today = forecastData.properties.periods[0];
+
+        document.getElementById("weather-output").innerHTML = `
+      <div class="weather-shell">
+        <div class="weather-top">
+          <div>
+            <span class="weather-eyebrow">Live Conditions</span>
+            <h4>St. Paul, MN</h4>
+            <p class="weather-summary">${today.shortForecast}</p>
+          </div>
+          <div class="weather-temp">${today.temperature}&deg;${today.temperatureUnit}</div>
+        </div>
+
+        <div class="weather-row">
+          <div class="weather-stat">
+            <span class="weather-stat-label">Temperature</span>
+            <strong>${today.temperature}&deg;${today.temperatureUnit}</strong>
+          </div>
+
+          <div class="weather-stat">
+            <span class="weather-stat-label">Wind Speed</span>
+            <strong>${today.windSpeed}</strong>
+          </div>
+
+          <div class="weather-stat">
+            <span class="weather-stat-label">Wind Direction</span>
+            <strong>${today.windDirection}</strong>
+          </div>
+        </div>
+      </div>
+    `;
+      } catch (error) {
+        console.error("Weather error:", error);
+        document.getElementById("weather-output").innerHTML = `
+      <div class="weather-shell">
+        <p class="weather-error">Unable to load weather right now.</p>
+      </div>
+    `;
+      }
+    }
+
+    loadWeather();
+  </script>
 </body>
 
 </html>

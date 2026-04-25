@@ -69,7 +69,7 @@ a {
 
 .hero-section {
   position: relative;
-  background: url('clay-banks-Ihful4zTe0Q-unsplash.jpg') center center / cover no-repeat;
+  background: url('../photos/clay-banks-Ihful4zTe0Q-unsplash.jpg') center center / cover no-repeat;
   color: #fff;
   overflow: hidden;
 }
@@ -241,6 +241,19 @@ a {
   border: 0;
 }
 
+.moon-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.moon-link {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
 .moon-card img {
   width: min(58.5%, 500px);
   margin: 0 auto;
@@ -385,6 +398,31 @@ a {
   .hero-actions .btn {
     width: 100%;
   }
+
+  .moon-card {
+    text-align: left !important;
+  }
+
+  .moon-card .card-header-copy {
+    margin-bottom: 1rem;
+  }
+
+  .moon-link {
+    min-height: 180px;
+  }
+
+  .moon-card img {
+    width: min(190px, 70%);
+  }
+
+  .weather-row {
+    gap: 0.75rem;
+  }
+
+  .weather-stat {
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 
@@ -411,35 +449,7 @@ a {
 }
 
 .weather-stat {
-  background: rgba(255,255,255,0.08);
-  padding: 10px 14px;
-  border-radius: 12px;
-  min-width: 140px;
-}
-
-.weather-display {
-  margin-top: 16px;
-  display: grid;
-  gap: 10px;
-}
-
-.weather-display h4 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.weather-display p {
-  margin: 0;
-}
-
-.weather-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 20px;
-}
-
-.weather-stat {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   padding: 10px 14px;
   border-radius: 12px;
   min-width: 140px;
